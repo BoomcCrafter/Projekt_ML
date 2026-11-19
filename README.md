@@ -1,61 +1,45 @@
-# End-to-End Data Science Project Template
-## 📁 Repository Structure
+# Poznań Air Quality Prediction 🌍
 
-```text
-├── data/
-│   ├── raw/               <- Immutable raw data source files
-│   └── processed/         <- Cleaned, transformed data ready for modeling
-├── models/                <- Serialized model pipelines and artifacts
-├── notebooks/             <- Jupyter notebooks for EDA and experimentation
-├── src/
-│   ├── __init__.py
-│   └── train.py           <- Automated training and evaluation pipeline
-├── app/
-│   └── app.py             <- Streamlit web dashboard for live inference
-├── .gitignore             <- Pre-configured Git exclusion rules
-├── requirements.txt       <- Python dependencies
-└── README.md
-```
-# 🚀 Quickstart Guide
-## 1. Clone the Repository
-```Bash
-git clone https://github.com/Olat1337/e2e-data-science-template.git
-cd e2e-data-science-template
-```
-## 2. Set Up a Virtual Environment
-macOS / Linux:
-```Bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
-Windows (PowerShell):
-```Bash
-python -m venv .venv
-.venv\Scripts\Activate.ps1
-```
-(If PowerShell execution policy blocks the script, run Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass).
-## 3. Install Dependencies
-```Bash
-pip install --upgrade pip
-pip install -r requirements.txt
-```
-## 4. Train the Model Pipeline
-Run the automated data preparation and model training script:
-```Bash
-python src/train.py
-```
-This script will:
-Verify or generate sample training data in data/raw/.
-Fit a preprocessing and RandomForestRegressor pipeline.
-Print validation metrics (R^2, MAE, RMSE).
-Export the artifact to models/model_pipeline.joblib.
-##5. Launch the Web Application
-```Bash
-streamlit run app/app.py
-```
-The application will open in your browser at http://localhost:8501.
-# 🛠️ Customizing for Your Team Project
-- Replace the Data: Place your CSV/Parquet files in data/raw/ or connect an API scraper in src/.
-- Experiment in Notebooks: Use notebooks/ to clean data, engineer features, and compare models.
-- Automate in src/train.py: Move your best data preparation steps and modeling code from notebooks into a reproducible Python pipeline.
-- Build the UI in app/app.py: Customize input widgets and result visualizations to match your project domain.
+## 1. Temat i problem
+
+Celem projektu jest stworzenie aplikacji wykorzystującej **Machine Learning do prognozowania jakości powietrza w Poznaniu**.
+
+Problemem, który chcemy rozwiązać, jest brak łatwo dostępnej, lokalnej prognozy poziomu zanieczyszczenia powietrza. Dostępne systemy prezentują głównie aktualne lub historyczne pomiary, natomiast nasza aplikacja ma umożliwić przewidywanie przyszłego poziomu smogu.
+
+Model będzie analizował historyczne stężenia pyłów PM2.5 i PM10 oraz dane meteorologiczne, takie jak temperatura, wilgotność, ciśnienie i prędkość wiatru.
+
+Planujemy uwzględnić kilka stacji pomiarowych na terenie Poznania, umożliwiając użytkownikowi wybór interesującej go lokalizacji.
+
+## 2. Dla kogo tworzymy aplikację?
+
+Aplikacja będzie skierowana przede wszystkim do:
+
+- **Mieszkańców Poznania**, którzy chcą monitorować i przewidywać jakość powietrza w swojej okolicy.
+- **Osób aktywnych fizycznie**, np. biegaczy i rowerzystów, planujących aktywności na świeżym powietrzu.
+- **Osób wrażliwych na zanieczyszczenia**, które chcą świadomie planować czas spędzany na zewnątrz.
+
+## 3. Co aplikacja będzie zwracać użytkownikowi?
+
+Po wybraniu lokalizacji w Poznaniu aplikacja docelowo wyświetli:
+
+- **Prognozowane stężenie PM2.5 i PM10** na kolejną godzinę (µg/m³).
+- **Ocenę jakości powietrza** na podstawie prognozowanych wartości.
+- **Wykres zmian stężenia zanieczyszczeń** w czasie.
+- **Prosty komunikat dla użytkownika** informujący o przewidywanej jakości powietrza.
+
+## 4. Technologie i dane
+
+- **Python** – przetwarzanie danych i tworzenie modeli ML.
+- **Pandas, NumPy, Matplotlib** – analiza i wizualizacja danych.
+- **Scikit-learn** – budowa i ocena modeli regresyjnych.
+- **GIOŚ** – historyczne pomiary jakości powietrza w Poznaniu.
+- **Open-Meteo** – historyczne dane meteorologiczne.
+
+## 5. Plan realizacji
+
+1. Zebranie danych dotyczących jakości powietrza i warunków pogodowych.
+2. Eksploracyjna analiza danych (EDA) i czyszczenie zbioru.
+3. Przygotowanie cech do modelu ML.
+4. Trenowanie i porównanie modeli regresyjnych.
+5. Ocena skuteczności prognoz.
+6. Przygotowanie prostego interfejsu aplikacji umożliwiającego wybór lokalizacji i wyświetlenie prognozy.
